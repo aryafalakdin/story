@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="jquery-ui.css">
+<script src="jquery-3.7.0.min.js"></script> 
+<script src="jquery-ui.js"></script>
+</head>
+<body>
+<div class="scnd5">
+  <div id="btn1"> Health[ 100 ] </div>
+  <div id="speech"> A destroyed hall...... </div>
+  <button onclick="window.location.href='p8.html';" id="btn" class="btn5" style="display: none;">Next</button>
+</div>
+<div id="container">
+  <div class="item1" > <img src="sword.png" width="100" height="100" id="sword" style="display: block;" alt=""> <img src="gun.png" width="99" height="100" id="img1"   alt=""></div>
+  <!--<div id="p99" class="img2">
+                                
+                    
+                    
+                            </div>
+                            <div id="p99"class="img3">
+                    
+                            </div>--> 
+  
+</div>
+<script>
+        
+        $(document).ready(function() { // do not delete this line
+	
+	var progress = 0;
+	var txt;
+    var hover = new Audio("mixkit-click-melodic-tone-1129.wav");
+    var click = new Audio("mixkit-hard-pop-click-2364.wav");
+    var click1 = new Audio("abcmp3.mp3");
+
+    $('#btn').mouseenter(e => hover.play());
+    $('#btn').mousedown(e => click.play());
+
+    
+	function eventHandler() {
+		
+        if(progress==0) {
+            $('#speech').mousedown(e => click1.play());
+            
+
+        	txt = "What happend there?";
+
+
+        }
+    	if(progress==1) {
+            
+            $('#speech').mousedown(e => click1.pause());
+
+        	txt = "What was that";
+          
+        }
+        if(progress==2) {
+            $('#speech').mousedown(e => click1.pause());
+
+        	txt = "I dont like this";
+        }
+        if(progress==3) {
+            $('#speech').mousedown(e => click1.pause());
+
+
+        	txt = "I think there's someone in here";
+        }
+        if(progress==4) {
+   
+
+        	txt = "Let's check the room...";
+            $('#btn').show();
+        }
+        progress++;
+        $('#speech').html(txt);
+	}
+
+	$('#speech').click(eventHandler);
+
+}); // do not delete this line
+    </script>
+</body>
+</html>

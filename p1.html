@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="jquery-ui.css">
+<script src="jquery-3.7.0.min.js"></script> 
+<script src="jquery-ui.js"></script>
+</head>
+<body>
+<div class="scnd0">
+  <div id="btn1"> Health[ 100 ] </div>
+  <div id="speech"> Hmm there is a door. </div>
+  <button id="btn" onclick="window.location.href='p2.html';" style="display: none;">NEXT</button>
+</div>
+<script>
+        
+        
+        $(document).ready(function() { // do not delete this line
+	
+	var progress = 0;
+	var txt;
+    const hover = new Audio("mixkit-click-melodic-tone-1129.wav");
+    const click = new Audio("mixkit-hard-pop-click-2364.wav");
+    
+    $('#btn').mouseenter(e => hover.play());
+    $('#btn').mousedown(e => click.play());
+
+	function eventHandler() {
+		if(progress==0) {
+        	txt = "I should open it";
+        }
+        if(progress==1) {
+        	txt = "Here goes nothing";
+            $('#btn').show();
+
+        }
+    	
+        progress++;
+        $('#speech').html(txt);
+	}
+
+	$('#speech').click(eventHandler);
+
+}); // do not delete this line
+    </script>
+</body>
+</html>

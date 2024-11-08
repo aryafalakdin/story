@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="jquery-ui.css">
+<script src="jquery-3.7.0.min.js"></script> 
+<script src="jquery-ui.js"></script>
+</head>
+<body>
+<div class="scnd14">
+    <img src="lock.svg" width="80" height="50" id="lock" alt="">
+  <div id="btn1"> Health[ 70 ]</div>
+  <div id="speech"> There is too much darkness.</div>
+  <button onclick="window.location.href='p17.html';" id="btn" class="btn5" style="display: none;">Next</button>
+</div>
+<div id="container">
+  <div id="item1">
+      <img src="gun.png" width="100" height="100" id="img1" style="display: block;"  alt=""></div>
+  <div id="item2">
+      <img src="Lock-Key.png" width="80" height="80" id="key1" style="display: block;"  alt=""></div>
+</div>
+
+<!--<div id="p99"></div>
+</div>
+     <div id="p99" >--> 
+
+<script>
+            
+        
+            $(document).ready(function() {
+        var progress = 0;
+        var txt;
+        const hover = new Audio("mixkit-click-melodic-tone-1129.wav");
+        const click = new Audio("mixkit-hard-pop-click-2364.wav");
+        const click2 = new Audio("mixkit-electric-pop-2365.mp3");
+
+        
+
+        
+        $('#btn').mouseenter(e => hover.play());
+        $('#btn').mousedown(e => click.play());
+     
+        function eventHandler() {
+            if (progress == 0) {
+                txt = "The Door is locked";
+                
+
+            }
+            if (progress == 1) {
+
+                $("#key").show();
+                $("#lock").show();
+
+               click2.play();
+
+
+
+
+            }
+            if (progress == 2) {
+                $("#speech").off("click");
+                txt = "I can use the key to open";
+
+                $('#speech').mousedown(e => click3.pause());    
+
+                $("#zombie").hide();
+
+            }
+            
+            progress++;
+            $('#speech').html(txt);
+        }
+
+  
+    
+        $("#speech").click(function () {
+            $("#speech").on("click", eventHandler);
+    
+        });
+        $('#speech').click(eventHandler);
+        var health = sessionStorage.getItem("health");
+        $("#btn1").text("Health[ " + health +" ]");
+
+    });
+    
+    // make the first image draggable
+    $( function() {
+    var lockvoice = new Audio("Heavy-Door-Lock--Unlocking--1-www.fesliyanstudios.com.mp3");
+    $("#key1").draggable({ revert: true });
+
+  // make the second image droppable
+  $("#lock").droppable({
+    drop: function() {
+
+      // show the button when the draggable image is dropped on the droppable image
+      $("#btn").show();
+      $("#btn").click(pge17);
+
+      // hide the draggable and droppable images
+      $("#key1").hide();
+      $("#lock").hide();
+      $("#lock1").show();
+
+      lockvoice.play();
+
+
+    },
+    
+  });
+
+  } );
+
+    
+  function pge17(){
+
+sessionStorage.setItem("health", health);
+
+window.location.href = "p17.html";
+}
+    
+        </script>
+</body>
+</html>

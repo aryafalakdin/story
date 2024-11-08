@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="jquery-ui.css">
+<script src="jquery-3.7.0.min.js"></script>
+<script src="jquery-ui.js"></script>
+</head>
+
+<body>
+<div class="abc123">
+  <div >
+    <h1>Empty House</h1>
+  </div>
+  <div class="first2"> 
+    <button onclick="window.location.href='p4.html';" class="btn1 btn2">Intro</button>
+    <button onclick="window.location.href='p1.html';" class="btn">Play</button>
+  </div>
+</div>
+<script>
+        
+    $(document).ready(function() { // do not delete this line
+
+
+const hover = new Audio("mixkit-click-melodic-tone-1129.wav");
+const click = new Audio("mixkit-hard-pop-click-2364.wav");
+
+$('.btn1').mouseenter(e => hover.play());
+$('.btn1').mousedown(e => click.play());
+
+$('.btn').mousedown(e => click.play());
+$('.btn').mouseenter(e => hover.play());
+
+
+
+
+
+
+}); // do not delete this line
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="jquery-ui.css">
+<script src="jquery-3.7.0.min.js"></script> 
+<script src="jquery-ui.js"></script>
+</head>
+<body>
+<div class="scnd6"> <img src="zombie1.png" width="150" height="290" id="abcaa" alt="">
+  <div id="btn1"> Health[ 100 ] </div>
+  <div id="speech"> Yeah!! I can go outside from this window!! </div>
+  <p id="para" style="color:wheat">Time:</p>
+  <div id="timer"> </div>
+  <button onclick="window.location.href='p9.html';" id="btn" class="btn5" style="display: none;">Next</button>
+</div>
+<div id="container">
+  <div class="item1" > <img src="sword.png" width="100" height="100" id="sword" style="display: block;" alt="">
+      <img src="gun.png" width="100" height="100" id="img1"   alt=""></div>
+  <!--<div id="p99" class="img2">
+                                
+                    
+                    
+                            </div>
+                            <div id="p99"class="img3">
+                    
+                            </div>--> 
+  
+</div>
+<script>
+        
+        $(document).ready(function() { // do not delete this line
+	
+	var progress = 0;
+	var txt;
+    var hover = new Audio("mixkit-click-melodic-tone-1129.wav");
+    var click = new Audio("mixkit-hard-pop-click-2364.wav");
+    var click1 = new Audio("abcaa.mp3");
+    var click2 = new Audio("mixkit-sword-slash-swoosh-1476.mp3");
+
+
+    $('#btn').mouseenter(e => hover.play());
+    $('#btn').mousedown(e => click.play());
+
+    
+	function eventHandler() {
+		if(progress==0) {
+           
+        	txt = "Keep moving carefully";
+
+        }
+        if(progress==1) {
+
+        	txt = "Whats that?";
+
+            $('#speech').mousedown(e => click1.play());    
+
+
+        }
+    	if(progress==2) {
+            $('#abcaa').show();
+
+            startTimer();
+            $("#speech").off("click");
+
+            $('#speech').mousedown(e => click1.pause());
+
+        	txt = "Ouch!! A zombie?";
+            
+            
+                $('#timer').hide();
+                $('#para').hide();
+
+          
+        }
+        if(progress==3) {
+            clearInterval(intervalId);
+
+            $('#speech').mousedown(e => click1.pause());
+
+        	txt = "Run... Go back";
+            $('#btn').show();
+            $('#btn').click(pge9);
+
+
+        }
+       
+        
+        progress++;
+        $('#speech').html(txt);
+	}
+
+	$('#speech').click(eventHandler);
+
+    $( function() {
+    $("#sword").draggable({ revert: true });
+
+  // make the second image droppable
+  $("#abcaa").droppable({
+    drop: function() {
+      // show the button when the draggable image is dropped on the droppable image
+      // hide the draggable and droppable images
+      $("#sword").hide();
+
+      $("#abcaa").hide();
+      click2.play();
+      $('#speech').mousedown(e => click2.pause());    
+
+      checkTimer();
+
+    },
+  });
+  function checkTimer() {
+    if ($("#abcaa").is(":hidden") ) {
+        clearInterval(intervalId);
+        $("#timer").hide();
+        $("#para").hide();
+        $("#speech").click(eventHandler);
+        $('#speech').mousedown(e => click1.pause());
+        $("#sword").hide();
+    }
+}
+});
+
+    
+
+
+    
+}); // do not delete this line
+
+var timer = 20;
+var health = 100;
+
+
+      var intervalId;
+      
+
+      function startTimer() {
+        intervalId=setInterval(function(){
+            timer--;
+          $("#timer").text(timer);
+        },1000);
+        intervalId = setInterval(function() {
+          
+          health=health-10;
+          $("#btn1").text("Health[ " + health +" ]");
+          if (health <= 0) {
+      clearInterval(intervalId);
+      sessionStorage.setItem("health", health);
+      window.location.href = "p24.html";
+    }
+          if (timer === 0) {
+            clearInterval(intervalId);
+            sessionStorage.setItem("health", health);
+
+            window.location.href = "p24.html";
+          }
+        }, 2000);
+      }
+      function pge9(){
+
+        sessionStorage.setItem("health", health);
+
+window.location.href = "p9.html";
+      }
+      
+    </script>
+</body>
+</html>
